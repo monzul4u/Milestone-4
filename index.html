@@ -11,6 +11,9 @@
         rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
@@ -28,7 +31,7 @@
 
     <!--Booking Section-->
     <main class="main-content container">
-        <div class="booking-form">
+        <div id="confirm-booking" class="booking-form">
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -51,20 +54,22 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="fclass-count" class="inp-style inp-width"  name="" value="0">
+                    <input id="fclass-count" class="inp-style inp-width" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p><span onclick="firstClassChange(true)">+</span> <span onclick="firstClassChange(false)">-</span> </p>
+                    <p><span onclick="firstClassChange(true)">+</span> <span onclick="firstClassChange(false)">-</span>
+                    </p>
                 </div>
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
                     <input id="eclass-count" class="inp-style inp-width" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span onclick="economyClassChange(true)">+</span> <span onclick="economyClassChange(false)">-</span> </p>
+                    <p> <span onclick="economyClassChange(true)">+</span> <span
+                            onclick="economyClassChange(false)">-</span> </p>
                 </div>
             </div>
             <div class="calculations">
@@ -95,71 +100,98 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="book-now" class="btn-style">Book Now</button>
+
         </div>
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
+
         </div>
-    </section>
 
-    <!--Thank You-->
-    <!-- Javascript code -->
-    <script>
-        // Function for First Class 
+        <div id="booking-area">
+            <div class="reservation-area">
+                <h1 class="text-center text-white">PLEASE LOGIN FOR BOOKING</h1>
+                <div class="login-area">
+                    <input type="text" class="form-control" placeholder="Email">
+                    <br>
+                    <input type="password" class="form-control" placeholder="Password">
+                    <br>
+                    <button id="login" class="btn btn-primary">Login</button>
+                </div>
+            </div>
 
-        function firstClassChange(isIncrease){
-            const fClassInput = document.getElementById("fclass-count");
-            const fClassCount = parseInt(fClassInput.value);
+        </div>
 
-            let fClassNewCount = fClassCount;
-         if (isIncrease == true) {
-            fClassNewCount = fClassCount + 1;
-         }
-         if (isIncrease == false && fClassCount > 0) {
-            fClassNewCount = fClassCount - 1;
-         }
-         fClassInput.value = fClassNewCount;
-         const fClassTotal = fClassNewCount * 100;
-         ticketPriceTotal();
-        }
-        // function for Economy Class 
+        </section>
 
-        function economyClassChange(isIncrease){
-            const classInput = document.getElementById("eclass-count");
-            const classCount = parseInt(classInput.value);
+        <!--Thank You-->
+        <!-- Javascript code -->
+        <script>
 
-            let classNewCount = classCount;
-         if (isIncrease == true) {
-            classNewCount = classCount + 1;
-         }
-         if (isIncrease == false && classCount > 0) {
-            classNewCount = classCount - 1;
-         }
-         classInput.value = classNewCount;
-         const classTotal = classNewCount * 100;
-         ticketPriceTotal()
-        }
+            const bookBtn = document.getElementById("book-now");
+            bookBtn.addEventListener("click", function () {
+                const bookArea = document.getElementById("confirm-booking");
+                bookArea.style.display = "none";
+                const booingArea = document.getElementById("booking-area");
+                booingArea.style.display = "block";
+            })
+            // Function for First Class Ticket
 
-        // Function for Total Ticket Price 
+            function firstClassChange(isIncrease) {
+                const fClassInput = document.getElementById("fclass-count");
+                const fClassCount = parseInt(fClassInput.value);
 
-        function ticketPriceTotal(){
-         const fClassInput = document.getElementById("fclass-count");
-         const fClassCount = parseInt(fClassInput.value);
+                let fClassNewCount = fClassCount;
+                if (isIncrease == true) {
+                    fClassNewCount = fClassCount + 1;
+                }
+                if (isIncrease == false && fClassCount > 0) {
+                    fClassNewCount = fClassCount - 1;
+                }
+                fClassInput.value = fClassNewCount;
+                const fClassTotal = fClassNewCount * 100;
+                ticketPriceTotal();
+            }
+            // function for Economy Class Ticket
 
-         const classInput = document.getElementById("eclass-count");
-         const classCount = parseInt(classInput.value);
+            function economyClassChange(isIncrease) {
+                const classInput = document.getElementById("eclass-count");
+                const classCount = parseInt(classInput.value);
 
-         const totalPrice = fClassCount * 150 + classCount * 100;
-         document.getElementById("sub-total").innerText = "$" + totalPrice;
-         const tax = Math.round(totalPrice * 0.10);
-         document.getElementById("tax-price").innerText = "$" + tax;
-         const ticketTotal = totalPrice + tax;
-         document.getElementById("ticket-total").innerText = "$" + ticketTotal;
-      }
-        
-    </script>
+                let classNewCount = classCount;
+                if (isIncrease == true) {
+                    classNewCount = classCount + 1;
+                }
+                if (isIncrease == false && classCount > 0) {
+                    classNewCount = classCount - 1;
+                }
+                classInput.value = classNewCount;
+                const classTotal = classNewCount * 100;
+                ticketPriceTotal()
+            }
+
+            // Function for Total Ticket Price 
+
+            function ticketPriceTotal() {
+                const fClassInput = document.getElementById("fclass-count");
+                const fClassCount = parseInt(fClassInput.value);
+
+                const classInput = document.getElementById("eclass-count");
+                const classCount = parseInt(classInput.value);
+
+                const totalPrice = fClassCount * 150 + classCount * 100;
+                document.getElementById("sub-total").innerText = "$" + totalPrice;
+                const tax = Math.round(totalPrice * 0.10);
+                document.getElementById("tax-price").innerText = "$" + tax;
+                const ticketTotal = totalPrice + tax;
+                document.getElementById("ticket-total").innerText = "$" + ticketTotal;
+            }
+
+        </script>
 </body>
 
 </html>

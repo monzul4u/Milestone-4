@@ -12,6 +12,7 @@ body{
     background-position: center center;
     background-attachment: scroll;
     background-size: cover;
+    
 }
 
 nav{
@@ -50,6 +51,7 @@ nav ul li a:hover, a.active{
     padding: 25px;
     border-radius: 5px;
     float: left;
+    
 }
 .booking-form h3{
     margin: 10px 0px;
@@ -119,4 +121,15 @@ nav ul li a:hover, a.active{
 .amount{
     display: flex;
     justify-content: space-between;
+}
+
+#booking-area{
+    display: none;
+}
+.login-area{
+    margin-top: 20px;
+    padding: 40px;
+    box-shadow: 5px 5px 10px #ddd;
+    border-radius: 10px;
+    
 }
